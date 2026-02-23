@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 1
+names: ['text']
+
+roboflow:
+  workspace: card-detector
+  project: thai-license-plate-wniws
+  version: 3
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/card-detector/thai-license-plate-wniws/dataset/3
