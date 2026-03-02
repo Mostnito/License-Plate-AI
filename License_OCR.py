@@ -5,13 +5,11 @@ from ultralytics import YOLO
 from PIL import Image
 import time
 
-# ===== ตั้งค่าตรงนี้ =====
-VEHICLE_MODEL_PATH = "vehicle_detector.pt"   # โมเดลแยกประเภทรถ
+VEHICLE_MODEL_PATH = "Vehicle_Aomsis.pt"   # โมเดลแยกประเภทรถ
 LICENSE_MODEL_PATH = "license_reader.pt"     # โมเดลอ่านป้ายทะเบียน
 VEHICLE_CONF = 0.5
 LICENSE_CONF = 0.5
 CAMERA_INDEX = 0
-# =========================
 
 def load_models():
     vehicle_model = YOLO(VEHICLE_MODEL_PATH)
@@ -20,7 +18,6 @@ def load_models():
 
 
 def process_frame(frame, vehicle_model, license_model):
-    """Process frame and return annotated frame + detection results"""
     results_data = []
 
     # --- Detect vehicles ---
@@ -142,7 +139,7 @@ st.markdown("""
     </style>
 """, unsafe_allow_html=True)
 
-st.markdown('<div class="title">🚗 Vehicle & License Plate Detection</div>', unsafe_allow_html=True)
+st.markdown('<div class="title">🚗 ตรวจจับป้ายทะเบียน</div>', unsafe_allow_html=True)
 st.markdown("---")
 
 # Layout
@@ -161,9 +158,9 @@ with col_info:
 # Control buttons
 col_start, col_stop = st.columns(2)
 with col_start:
-    start = st.button("▶️ เริ่มกล้อง", use_container_width=True, type="primary")
+    start = st.button("▶️ เริ่มเปิดกล้อง", use_container_width=True, type="primary")
 with col_stop:
-    stop = st.button("⏹️ หยุด", use_container_width=True)
+    stop = st.button("⏹️ ปิดกล้อง", use_container_width=True)
 
 if "running" not in st.session_state:
     st.session_state.running = False
