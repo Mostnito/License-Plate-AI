@@ -13,103 +13,6 @@ LICENSE_CONF = 0.5
 CAMERA_INDEX = 0
 # =========================
 
-# -------- Thai province mapping --------
-PROVINCE_MAP = {
-    "กรุงเทพ": "กรุงเทพมหานคร",
-    "กทม": "กรุงเทพมหานคร",
-    "กระบี่": "กระบี่",
-    "กาญจนบุรี": "กาญจนบุรี",
-    "กาฬสินธุ์": "กาฬสินธุ์",
-    "กำแพงเพชร": "กำแพงเพชร",
-    "ขอนแก่น": "ขอนแก่น",
-    "จันทบุรี": "จันทบุรี",
-    "ฉะเชิงเทรา": "ฉะเชิงเทรา",
-    "ชลบุรี": "ชลบุรี",
-    "ชัยนาท": "ชัยนาท",
-    "ชัยภูมิ": "ชัยภูมิ",
-    "ชุมพร": "ชุมพร",
-    "เชียงราย": "เชียงราย",
-    "เชียงใหม่": "เชียงใหม่",
-    "ตรัง": "ตรัง",
-    "ตราด": "ตราด",
-    "ตาก": "ตาก",
-    "นครนายก": "นครนายก",
-    "นครปฐม": "นครปฐม",
-    "นครพนม": "นครพนม",
-    "นครราชสีมา": "นครราชสีมา",
-    "นครศรีธรรมราช": "นครศรีธรรมราช",
-    "นครสวรรค์": "นครสวรรค์",
-    "นนทบุรี": "นนทบุรี",
-    "นราธิวาส": "นราธิวาส",
-    "น่าน": "น่าน",
-    "บึงกาฬ": "บึงกาฬ",
-    "บุรีรัมย์": "บุรีรัมย์",
-    "ปทุมธานี": "ปทุมธานี",
-    "ประจวบคีรีขันธ์": "ประจวบคีรีขันธ์",
-    "ปราจีนบุรี": "ปราจีนบุรี",
-    "ปัตตานี": "ปัตตานี",
-    "พระนครศรีอยุธยา": "พระนครศรีอยุธยา",
-    "พะเยา": "พะเยา",
-    "พังงา": "พังงา",
-    "พัทลุง": "พัทลุง",
-    "พิจิตร": "พิจิตร",
-    "พิษณุโลก": "พิษณุโลก",
-    "เพชรบุรี": "เพชรบุรี",
-    "เพชรบูรณ์": "เพชรบูรณ์",
-    "แพร่": "แพร่",
-    "ภูเก็ต": "ภูเก็ต",
-    "มหาสารคาม": "มหาสารคาม",
-    "มุกดาหาร": "มุกดาหาร",
-    "แม่ฮ่องสอน": "แม่ฮ่องสอน",
-    "ยโสธร": "ยโสธร",
-    "ยะลา": "ยะลา",
-    "ร้อยเอ็ด": "ร้อยเอ็ด",
-    "ระนอง": "ระนอง",
-    "ระยอง": "ระยอง",
-    "ราชบุรี": "ราชบุรี",
-    "ลพบุรี": "ลพบุรี",
-    "ลำปาง": "ลำปาง",
-    "ลำพูน": "ลำพูน",
-    "เลย": "เลย",
-    "ศรีสะเกษ": "ศรีสะเกษ",
-    "สกลนคร": "สกลนคร",
-    "สงขลา": "สงขลา",
-    "สตูล": "สตูล",
-    "สมุทรปราการ": "สมุทรปราการ",
-    "สมุทรสงคราม": "สมุทรสงคราม",
-    "สมุทรสาคร": "สมุทรสาคร",
-    "สระแก้ว": "สระแก้ว",
-    "สระบุรี": "สระบุรี",
-    "สิงห์บุรี": "สิงห์บุรี",
-    "สุโขทัย": "สุโขทัย",
-    "สุพรรณบุรี": "สุพรรณบุรี",
-    "สุราษฎร์ธานี": "สุราษฎร์ธานี",
-    "สุรินทร์": "สุรินทร์",
-    "หนองคาย": "หนองคาย",
-    "หนองบัวลำภู": "หนองบัวลำภู",
-    "อ่างทอง": "อ่างทอง",
-    "อำนาจเจริญ": "อำนาจเจริญ",
-    "อุดรธานี": "อุดรธานี",
-    "อุตรดิตถ์": "อุตรดิตถ์",
-    "อุทัยธานี": "อุทัยธานี",
-    "อุบลราชธานี": "อุบลราชธานี",
-}
-
-def extract_province(class_name: str) -> str:
-    """ดึงชื่อจังหวัดจาก class name ของโมเดลป้ายทะเบียน"""
-    for key, full_name in PROVINCE_MAP.items():
-        if key in class_name:
-            return full_name
-    # ถ้าไม่เจอในลิสต์ ให้คืน class name ตรงๆ
-    return class_name
-
-def extract_plate_number(class_name: str) -> str:
-    """ดึงเลขทะเบียนจาก class name (ปรับตามรูปแบบ class ของโมเดลคุณ)"""
-    # ตัวอย่าง: ถ้า class name เป็น "กข-1234" หรือ "กข1234"
-    # ปรับ logic ตรงนี้ให้ตรงกับ format ของโมเดลคุณ
-    return class_name
-
-@st.cache_resource
 def load_models():
     vehicle_model = YOLO(VEHICLE_MODEL_PATH)
     license_model = YOLO(LICENSE_MODEL_PATH)
@@ -148,22 +51,52 @@ def process_frame(frame, vehicle_model, license_model):
         if vehicle_crop.size > 0:
             license_results = license_model(vehicle_crop, conf=LICENSE_CONF, verbose=False)[0]
 
+            chars = []
+
             for lbox in license_results.boxes:
                 lx1, ly1, lx2, ly2 = map(int, lbox.xyxy[0])
-                plate_class = license_model.names[int(lbox.cls[0])]
+                cls_id = int(lbox.cls[0])
+                label = license_model.names[cls_id]
 
-                # พิกัดป้ายบน frame หลัก
+                 # พิกัด absolute บน frame หลัก
                 abs_lx1, abs_ly1 = vx1 + lx1, vy1 + ly1
                 abs_lx2, abs_ly2 = vx1 + lx2, vy1 + ly2
 
-                # วาดกรอบป้ายทะเบียน (สีเขียว)
-                cv2.rectangle(frame, (abs_lx1, abs_ly1), (abs_lx2, abs_ly2), (0, 220, 80), 2)
-                cv2.putText(frame, plate_class,
-                            (abs_lx1, abs_ly2 + 16), cv2.FONT_HERSHEY_SIMPLEX, 0.55, (0, 220, 80), 2)
+                cv2.rectangle(frame, (abs_lx1, abs_ly1),
+                  (abs_lx2, abs_ly2), (0, 255, 0), 1)
 
-                plate_number = extract_plate_number(plate_class)
-                province = extract_province(plate_class)
-                break
+                # ✅ แสดง label ตัวอักษร
+                cv2.putText(frame, label,
+                            (abs_lx1, abs_ly1 - 4),
+                            cv2.FONT_HERSHEY_SIMPLEX,
+                            0.5, (0, 255, 0), 1)
+
+                # เก็บตำแหน่ง X เพื่อเรียง
+                x_center = (lx1 + lx2) // 2
+                y_center = (ly1 + ly2) // 2
+
+                chars.append((x_center, y_center, label))
+
+            # ถ้ามีตัวอักษร
+            if chars:
+                # แยกบรรทัดบน/ล่าง
+                ys = [c[1] for c in chars]
+                threshold = sum(ys) / len(ys)
+
+                upper = []
+                lower = []
+
+                for x, y, label in chars:
+                    if y < threshold:
+                        upper.append((x, label))
+                    else:
+                        lower.append((x, label))
+
+                upper = sorted(upper, key=lambda x: x[0])
+                lower = sorted(lower, key=lambda x: x[0])
+
+                plate_number = "".join([c[1] for c in upper])
+                province = "".join([c[1] for c in lower])
 
         results_data.append({
             "ประเภทรถ": vehicle_class,
